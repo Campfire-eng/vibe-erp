@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "TZ=UTC next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "migrate": "npx prisma migrate dev && npx prisma generate",
-    "seed": "npx ts-node --project tsconfig.json prisma/seed.ts"
+    "seed": "npx ts-node --project tsconfig.json prisma/seed.ts",
+    "reset": "rm -f prisma/dev.db && npm run migrate && npm run seed"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
