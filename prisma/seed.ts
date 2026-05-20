@@ -1,5 +1,8 @@
 import { prisma } from "@/lib/db";
 import { Prisma } from "@prisma/client";
+import { promises as fs } from "fs";
+import path from "path";
+import { parseBillRow, splitCsv } from "@/lib/csv";
 
 type BillSeed = {
   vendorName: string;
@@ -56,10 +59,28 @@ async function main() {
       });
     }
 
+    // Import the customer-provided CSV via the same parser the /import
+    // page uses. Mirrors a real ingestion run on a fresh DB.
+    const csvPath = path.join(process.cwd(), "fixtures", "bills.csv");
+    const text = await fs.readFile(csvPath, "utf8");
+    const { rows } = splitCsv(text);
+    for (const r of rows) {
+      const b = parseBillRow(r);
+      await prisma.bill.create({
+        data: {
+          vendorName: b.vendorName,
+          amount: new Prisma.Decimal(b.amount),
+          dueDate: b.dueDate,
+          invoiceNumber: b.invoiceNumber,
+          paid: false,
+        },
+      });
+    }
+
     const unpaidCount = await prisma.bill.count({ where: { paid: false } });
     const paidCount = await prisma.bill.count({ where: { paid: true } });
     console.log(
-      `Seed completed. user=${user.email}, bills=${BILLS.length} (unpaid=${unpaidCount}, paid=${paidCount})`,
+      `Seed completed. user=${user.email}, bills=${BILLS.length} + csv (unpaid=${unpaidCount}, paid=${paidCount})`,
     );
   } catch (error) {
     console.error("Error during seeding:", error);

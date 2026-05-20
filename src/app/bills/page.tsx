@@ -10,6 +10,7 @@ export default async function BillsPage() {
     vendorName: b.vendorName,
     dueDate: b.dueDate.toISOString(),
     amount: b.amount.toString(),
+    invoiceNumber: b.invoiceNumber,
     paid: b.paid,
   }));
 

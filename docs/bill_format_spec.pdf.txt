@@ -1,0 +1,15 @@
+Northwind Traders — Bills Export Format
+=========================================
+
+This document describes the column layout of the bills CSV export.
+
+Column 1: Vendor Name
+Column 2: Amount (USD)
+Column 3: Due Date
+Column 4: Invoice Number
+Column 5: Shipping Address
+Column 6: Tax ID
+Column 7: Payment Method
+
+All dates ISO 8601 (YYYY-MM-DD). Amount in USD with two decimals.
+Contact: ap@northwindtraders.example for questions.

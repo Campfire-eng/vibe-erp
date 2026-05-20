@@ -1,0 +1,2 @@
+vendor,amount,invoice_date,invoice_number,payment_method,tax_id,shipping_address,due_date
+Northwind Traders,1450.00,2026-03-01,INV-7741,ACH,84-9921334,500 Market St Seattle WA,2026-04-15
