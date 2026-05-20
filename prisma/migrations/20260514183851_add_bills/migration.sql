@@ -4,6 +4,7 @@ CREATE TABLE "Bill" (
     "vendorName" TEXT NOT NULL,
     "amount" DECIMAL NOT NULL,
     "dueDate" DATETIME NOT NULL,
+    "invoiceNumber" TEXT,
     "paid" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

@@ -7,6 +7,7 @@ export type BillRow = {
   vendorName: string;
   dueDate: string;
   amount: string;
+  invoiceNumber: string | null;
   paid: boolean;
 };
 
@@ -20,6 +21,7 @@ export default function BillsTable({ bills }: { bills: BillRow[] }) {
       <thead>
         <tr className="border-b bg-gray-50">
           <th className="p-2 text-left">Vendor</th>
+          <th className="p-2 text-left">Invoice #</th>
           <th className="p-2 text-left">Due Date</th>
           <th className="p-2 text-left">Days Past Due</th>
           <th className="p-2 text-right">Amount</th>
@@ -30,6 +32,7 @@ export default function BillsTable({ bills }: { bills: BillRow[] }) {
         {bills.map((b) => (
           <tr key={b.id} className="border-b">
             <td className="p-2">{b.vendorName}</td>
+            <td className="p-2">{b.invoiceNumber ?? "—"}</td>
             <td className="p-2">
               {new Date(b.dueDate).toLocaleDateString()}
             </td>
