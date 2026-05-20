@@ -25,12 +25,14 @@ export default async function Home() {
         <div className="mt-4 text-lg">
           Total Outstanding: ${total}
         </div>
-        <Link
-          href="/bills"
-          className="mt-6 inline-block text-blue-600 underline"
-        >
-          View bills →
-        </Link>
+        <div className="mt-6 flex gap-4">
+          <Link href="/bills" className="text-blue-600 underline">
+            View bills →
+          </Link>
+          <Link href="/import" className="text-blue-600 underline">
+            Import bills →
+          </Link>
+        </div>
       </div>
     </div>
   );

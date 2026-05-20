@@ -18,10 +18,11 @@ model User {
 }
 
 model Bill {
-  id         String   @id @default(uuid())
-  vendorName String
-  amount     Decimal
-  dueDate    DateTime
-  paid       Boolean  @default(false)
-  createdAt  DateTime @default(now())
+  id            String   @id @default(uuid())
+  vendorName    String
+  amount        Decimal
+  dueDate       DateTime
+  invoiceNumber String?
+  paid          Boolean  @default(false)
+  createdAt     DateTime @default(now())
 }
